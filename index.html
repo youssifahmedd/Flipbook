@@ -59,7 +59,6 @@
         inset:0;
         width:100%;
         height:100%;
-        background-image:url("https://res.cloudinary.com/df5qqg0v0/image/upload/v1783204729/ChatGPT_Image_Jul_4_2026_at_07_10_51_PM_hbsrhw.png");
         background-size:cover;
         background-position:center 30%;
         transform:scale(1.18);
@@ -372,7 +371,9 @@
     
     <div id="stage">
       <div class="photo-wrap">
-        <div class="photo"></div>
+        <div class="photo">
+        <img crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783204729/ChatGPT_Image_Jul_4_2026_at_07_10_51_PM_hbsrhw.png">  
+        </div>
         <div class="photo-shade"></div>
       </div>
     
@@ -406,9 +407,9 @@
         
     <script>
     (function(){
-      // build gold dust particles
+      // build gold dust particles (fewer on small/mobile screens for smoother performance)
       const field = document.getElementById('particles');
-      const N = 34;
+      const N = window.matchMedia('(max-width:640px)').matches ? 16 : 34;
       const motes = [];
       for(let i=0;i<N;i++){
         const m = document.createElement('div');
@@ -527,18 +528,7 @@
           <!-- Toggle mode button -->
           <label class="swap swap-rotate">
             <input type="checkbox" class="theme-controller" value="black" />
-            <i class="bi bi-sun-fill swap-on"></i>
-            <i class="bi bi-moon-stars-fill swap-off"></i>
-        </label>
-    </div>
-
-
-        <div class="fixed top-0 left-0 w-full h-auto p-4 flex flex-row justify-end items-center">
-          <!-- Toggle mode button -->
-          <label class="swap swap-rotate">
-            <input type="checkbox" class="theme-controller" value="black" />
-            <i class="bi bi-sun-fill swap-on"></i>
-            <i class="bi bi-moon-stars-fill swap-off"></i>
+            
         </label>
     </div>
 
@@ -574,26 +564,26 @@
             <div class="page" id="page2">
                 <div class="front_page">
                     <label for="page2_checkbox"></label>
-                    <img class="front_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182300/IMG_0027_tcrhyb.webp" alt="Front content">
+                    <img class="front_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182300/IMG_0027_tcrhyb.webp" alt="Front content">
                 </div>
 
                 <div class="back_page">
                     <label for="page2_checkbox"></label>
                     
-                    <img class="back_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182478/IMG_0028_vsfhtm.jpg" alt="Back content">
+                    <img class="back_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182478/IMG_0028_vsfhtm.jpg" alt="Back content">
                 </div>
             </div>
 
             <div class="page" id="page3">
                 <div class="front_page">
                     <label for="page3_checkbox"></label>
-                    <img class="front_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185900/IMG_0032_vyy2e5.jpg" alt="Front content">
+                    <img class="front_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185900/IMG_0032_vyy2e5.jpg" alt="Front content">
                 </div>
 
                 <div class="back_page">
                     <label for="page3_checkbox"></label>
                     
-                    <img class="back_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185899/IMG_0031_nsdn7a.jpg" alt="Back content">
+                    <img class="back_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185899/IMG_0031_nsdn7a.jpg" alt="Back content">
                 </div>
             </div>
 
@@ -601,13 +591,13 @@
                 <div class="front_page">
                     <label for="page4_checkbox"></label>
                   
-                    <img class="front_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783138346/happy-students-graduation-ceremony_dt4ftd.jpg" alt="Front content">
+                    <img class="front_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783138346/happy-students-graduation-ceremony_dt4ftd.jpg" alt="Front content">
                 </div>
 
                 <div class="back_page">
                     <label for="page4_checkbox"></label>
         
-                    <img class="back_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182478/IMG_0028_vsfhtm.jpg" alt="Back content">
+                    <img class="back_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783182478/IMG_0028_vsfhtm.jpg" alt="Back content">
                 </div>
             </div>
 
@@ -615,13 +605,13 @@
                 <div class="front_page">
                     <label for="page5_checkbox"></label>
                    
-                    <img class="front_content" crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783181659/ChatGPT_Image_Jul_4_2026_at_07_13_56_PM_gv7mlz.png" alt="Front content">
+                    <img class="front_content" crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783181659/ChatGPT_Image_Jul_4_2026_at_07_13_56_PM_gv7mlz.png" alt="Front content">
                 </div>
 
                 <div class="back_page">
                     <label for="page5_checkbox"></label>
                   
-                    <img class="back_content"  crossorigin="anonymous" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185482/ChatGPT_Image_Jul_4_2026_at_08_13_36_PM_dinxtq.png" alt="Back content">
+                    <img class="back_content"  crossorigin="anonymous" loading="lazy" decoding="async" src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783185482/ChatGPT_Image_Jul_4_2026_at_08_13_36_PM_dinxtq.png" alt="Back content">
                 </div>
             </div>
           
@@ -733,7 +723,7 @@ input {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #090c43;
+    background-color: #060657;
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);}
 
 .front_cover {
@@ -1013,6 +1003,30 @@ input {
     z-index: 9;
 }
 
+/* ============ RESPONSIVE SCALING FOR THE FLIP BOOK ============
+   The book's internal geometry (perspective, rotateY page-flip, offsets)
+   is all fixed-px on purpose so the 3D flip keeps working correctly.
+   Instead of rewriting every measurement, we simply scale the whole
+   #flip_book down as one unit on smaller viewports. Because the opening
+   translateX(144px) is applied *inside* the same transform (before the
+   scale, in local coordinates), it automatically shrinks proportionally
+   with the book — so the two-page spread always fits the screen. */
+@media (max-width: 1024px){
+    #flip_book{ transform: scale(0.85); transform-origin: center center; }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.85) translateX(144px); }
+}
+@media (max-width: 768px){
+    #flip_book{ transform: scale(0.68); transform-origin: center center; }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.68) translateX(144px); }
+}
+@media (max-width: 480px){
+    #flip_book{ transform: scale(0.52); transform-origin: center center; }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.52) translateX(144px); }
+}
+@media (max-width: 360px){
+    #flip_book{ transform: scale(0.44); transform-origin: center center; }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.44) translateX(144px); }
+}
 
 </style>  
 
@@ -1244,9 +1258,20 @@ input {
     width:0%;
     background:linear-gradient(90deg, var(--gold), var(--gold-bright));
   }
+
+  @media (max-width:480px){
+    .player-stage{
+      transform-origin: bottom left;
+      transform: scale(0.8);
+      left:10px;
+      bottom:10px;
+    }
+    .player-stage.closed{
+      transform: translateY(12px) scale(0.72);
+    }
+  }
 </style>
-</head>
-<body style="background:#152238; margin:0;">
+<body>
 
 <div class="player-stage" id="playerStage">
   <button class="close-btn" id="closeBtn" aria-label="إغلاق المشغل">×</button>
@@ -1273,7 +1298,7 @@ input {
   <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
 
   <!-- غيّر src ده لمسار الأغنية بتاعتك -->
-  <audio id="audio" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783200591/e0805c036cd762a9d08eeaf2ff315b95_i25d6v.mp3" preload="auto"></audio>
+  <audio id="audio" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783200591/e0805c036cd762a9d08eeaf2ff315b95_i25d6v.mp3"</audio>
 
 </div>
 
@@ -1343,12 +1368,17 @@ input {
 
 const responsiveWarning = document.getElementById("responsive-warning");
 // Enable/disable responsive warning.
-const responsiveDesign = false;
+// NOTE: this used to be "false" with no matching #responsive-warning element
+// in the page, so on every mobile-sized screen this threw a JS error on load
+// and on every resize. The site is now responsive, so the warning is disabled
+// and the code is guarded in case the element is ever added back.
+const responsiveDesign = true;
 // Mobile width limit.
 const threshold = 768;
 
 // Show or hide modal based on screen size.
 function checkResponsiveState() {
+  if (!responsiveWarning) return;
   const small = window.innerWidth <= threshold;
 
   if (!responsiveDesign && small) {
@@ -1379,8 +1409,13 @@ window.addEventListener("resize", checkResponsiveState);
   const emojis = ['🎓','🎉','✨','🎊'];
   const confettiColors = ['#c9a24d','#8e1f28','#f3efe4','#1c2f4d','#e8c983'];
  
-  const TOTAL = 26; // زوّد أو قلّل حسب الكثافة اللي عايزها
+  // Fewer particles on smaller / low-power screens so mobile doesn't lag.
+  // (This block used to be duplicated in the page, which silently doubled
+  // the particle count to 52 — that duplicate has been removed.)
+  const isSmall = window.matchMedia('(max-width:640px)').matches;
+  const TOTAL = isSmall ? 12 : 26;
  
+  const frag = document.createDocumentFragment();
   for(let i=0;i<TOTAL;i++){
     const useConfetti = Math.random() < 0.4;
     const el = document.createElement('div');
@@ -1405,47 +1440,9 @@ window.addEventListener("resize", checkResponsiveState);
       el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
     }
  
-    layer.appendChild(el);
+    frag.appendChild(el);
   }
-})();
-</script>
-
-<script>
-(function(){
-  const layer = document.getElementById('gradBgLayer');
-  if(!layer) return;
- 
-  const emojis = ['🎓','🎉','✨','🎊'];
-  const confettiColors = ['#c9a24d','#8e1f28','#f3efe4','#1c2f4d','#e8c983'];
- 
-  const TOTAL = 26; // زوّد أو قلّل حسب الكثافة اللي عايزها
- 
-  for(let i=0;i<TOTAL;i++){
-    const useConfetti = Math.random() < 0.4;
-    const el = document.createElement('div');
- 
-    const left = Math.random()*100;
-    const duration = 9 + Math.random()*10;   // سرعة السقوط
-    const delay = Math.random()*14;          // تأخير عشوائي عشان ميظهروش كلهم مع بعض
-    const drift = (Math.random()*80 - 40) + 'px';
- 
-    el.style.left = left + '%';
-    el.style.animationDuration = duration + 's';
-    el.style.animationDelay = delay + 's';
-    el.style.setProperty('--drift', drift);
- 
-    if(useConfetti){
-      el.className = 'confetti';
-      el.style.background = confettiColors[Math.floor(Math.random()*confettiColors.length)];
-      el.style.transform = `rotate(${Math.random()*360}deg)`;
-    } else {
-      const sizeClass = Math.random() < 0.3 ? 'small' : (Math.random() < 0.6 ? '' : 'large');
-      el.className = 'piece ' + sizeClass;
-      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    }
- 
-    layer.appendChild(el);
-  }
+  layer.appendChild(frag);
 })();
 </script>
  
