@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flip Book</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- DAISYUI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- SCRIPT -->
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <!-- TOP CONTAINER -->
+        <div class="fixed top-0 left-0 w-full h-auto p-4 flex flex-row justify-end items-center">
+            <!-- Toggle mode button -->
+            <label class="swap swap-rotate">
+                <input type="checkbox" class="theme-controller" value="black" />
+                <i class="bi bi-sun-fill swap-on"></i>
+                <i class="bi bi-moon-stars-fill swap-off"></i>
+            </label>
+        </div>
+
+        <!-- FLIP BOOK -->
+        <input type="checkbox" id="cover_checkbox">
+        <input type="checkbox" id="page1_checkbox">
+        <input type="checkbox" id="page2_checkbox">
+        <input type="checkbox" id="page3_checkbox">
+        <input type="checkbox" id="page4_checkbox">
+        <input type="checkbox" id="page5_checkbox">
+
+        <div id="flip_book">
+            <div class="front_cover">
+                <label for="cover_checkbox" id="cover"></label>
+            </div>
+
+            <div class="page" id="page1">
+                <div class="front_page">
+                    <label for="page1_checkbox"></label>
+                    <img class="edge_shading" src="https://collection.cloudinary.com/df5qqg0v0/d644889f3e83c91c485d267eef790c38" alt="Front page edge shading">
+                    <img class="front_content" src="./assets/images/pages/page1.webp" alt="Front content">
+                </div>
+
+                <div class="back_page">
+                    <label for="page1_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/back_page_edge_shading.webp" alt="Back page edge shading">
+                    <img class="back_content" src="./assets/images/pages/page2.webp" alt="Back content">
+                </div>
+            </div>
+
+            <div class="page" id="page2">
+                <div class="front_page">
+                    <label for="page2_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/front_page_edge_shading.webp" alt="Front page edge shading">
+                    <img class="front_content" src="./assets/images/pages/page3.webp" alt="Front content">
+                </div>
+
+                <div class="back_page">
+                    <label for="page2_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/back_page_edge_shading.webp" alt="Back page edge shading">
+                    <img class="back_content" src="./assets/images/pages/page4.webp" alt="Back content">
+                </div>
+            </div>
+
+            <div class="page" id="page3">
+                <div class="front_page">
+                    <label for="page3_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/front_page_edge_shading.webp" alt="Front page edge shading">
+                    <img class="front_content" src="./assets/images/pages/page5.webp" alt="Front content">
+                </div>
+
+                <div class="back_page">
+                    <label for="page3_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/back_page_edge_shading.webp" alt="Back page edge shading">
+                    <img class="back_content" src="./assets/images/pages/page6.webp" alt="Back content">
+                </div>
+            </div>
+
+            <div class="page" id="page4">
+                <div class="front_page">
+                    <label for="page4_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/front_page_edge_shading.webp" alt="Front page edge shading">
+                    <img class="front_content" src="./assets/images/pages/page7.webp" alt="Front content">
+                </div>
+
+                <div class="back_page">
+                    <label for="page4_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/back_page_edge_shading.webp" alt="Back page edge shading">
+                    <img class="back_content" src="./assets/images/pages/page8.webp" alt="Back content">
+                </div>
+            </div>
+
+            <div class="page" id="page5">
+                <div class="front_page">
+                    <label for="page5_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/front_page_edge_shading.webp" alt="Front page edge shading">
+                    <img class="front_content" src="./assets/images/pages/page9.webp" alt="Front content">
+                </div>
+
+                <div class="back_page">
+                    <label for="page5_checkbox"></label>
+                    <img class="edge_shading" src="./assets/images/back_page_edge_shading.webp" alt="Back page edge shading">
+                    <img class="back_content" src="./assets/images/pages/page10.webp" alt="Back content">
+                </div>
+            </div>
+
+            <div class="back_cover"></div>
+        </div>
+
+        <!-- BOTTOM CONTAINER -->
+        <div class="fixed left-0 bottom-0 w-full h-auto p-4 flex flex-row justify-between items-center">
+
+    </main>
+    <style>
+/* DAISYUI */
+@plugin "daisyui" {
+    themes: light --default, black;
+}
+
+:root:has(input.theme-controller[value="black"]:checked) .tooltip,
+:root:has(input.theme-controller[value="black"]:checked) .tooltip::before {
+    border-radius: 0.25rem !important;
+}
+
+.tooltip::after {
+    display: none !important;
+}
+
+/* GENERAL */
+body {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    display: none;
+}
+
+/* FLIP BOOK */
+#flip_book {
+    width: 298px;
+    height: 420px;
+    position: relative;
+    transition-duration: 1s;
+    perspective: 2000px;
+}
+
+.front_cover,
+.back_cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2.5px 5px 5px 2.5px;
+    background-image: url(./assets/images/flip_book_edge_shading.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(220, 20, 60);
+    box-shadow: 0 0 5px 0 rgb(25, 25, 25, 0.25);
+}
+
+.front_cover {
+    position: absolute;
+    cursor: pointer;
+    transform-origin: center left;
+    transition: transform 0.5s;
+    z-index: 99;
+}
+
+.front_cover label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.page {
+    width: 288px;
+    height: 400px;
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    border-radius: 0 5px 5px 0;
+    background-color: white;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition-duration: 0.5s;
+}
+
+.front_page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front_page label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.back_page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    z-index: 100;
+}
+
+.back_page label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.edge_shading {
+    width: 288px;
+    height: 400px;
+    position: absolute;
+    z-index: 98;
+}
+
+.front_content {
+    width: 287px;
+    height: 398px;
+    position: absolute;
+    top: 1px;
+    border-radius: 0 5px 5px 0;
+    z-index: 97;
+}
+
+.back_content {
+    width: 287px;
+    height: 398px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 5px 0 0 5px;
+    z-index: 97;
+}
+
+.back_cover {
+    position: relative;
+    z-index: -1;
+}
+
+#page1 {
+    z-index: 8;
+}
+
+#page2 {
+    z-index: 5;
+}
+
+#page3 {
+    z-index: 4;
+}
+
+#page4 {
+    z-index: 3;
+}
+
+#page5 {
+    z-index: 2;
+}
+
+#cover_checkbox:checked~#flip_book {
+    transform: translateX(144px)
+}
+
+#cover_checkbox:checked~#flip_book .front_cover {
+    transform: rotateY(-180deg);
+    transition: transform 1.5s, z-index 0.5s 0.5s;
+    z-index: 1;
+}
+
+#cover_checkbox:checked~#flip_book #cover {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+}
+
+#page1_checkbox:checked~#flip_book #page1 {
+    transform: rotateY(-180deg);
+    z-index: 3;
+}
+
+#page2_checkbox:checked~#flip_book #page2 {
+    transform: rotateY(-180deg);
+    z-index: 4;
+}
+
+#page3_checkbox:checked~#flip_book #page3 {
+    transform: rotateY(-180deg);
+    z-index: 5;
+}
+
+#page4_checkbox:checked~#flip_book #page4 {
+    transform: rotateY(-180deg);
+    z-index: 6;
+}
+
+#page5_checkbox:checked~#flip_book #page5 {
+    transform: rotateY(-180deg);
+    z-index: 9;
+}
+   </style>  
+   
+   <script>
+   /******************************
+* RESPONSIVE WARNING BEHAVIOR *
+******************************/
+
+const responsiveWarning = document.getElementById("responsive-warning");
+// Enable/disable responsive warning.
+const responsiveDesign = false;
+// Mobile width limit.
+const threshold = 768;
+
+// Show or hide modal based on screen size.
+function checkResponsiveState() {
+  const small = window.innerWidth <= threshold;
+
+  if (!responsiveDesign && small) {
+    if (!responsiveWarning.open) {
+      responsiveWarning.showModal();
+      document.body.classList.add("overflow-hidden");
+    }
+  } else {
+    if (responsiveWarning.open) {
+      responsiveWarning.close();
+      document.body.classList.remove("overflow-hidden");
+    }
+  }
+}
+
+// Initial check.
+checkResponsiveState();
+
+// Real-time resize detection.
+window.addEventListener("resize", checkResponsiveState);
+   </script>
+  </body>
+
+</html>
