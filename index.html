@@ -28,11 +28,11 @@
       *{margin:0;padding:0;box-sizing:border-box;}
       html,body{
         background:var(--ink);
-        color:var(--cream);
-        font-family:'Tajawal','Cormorant Garamond',serif;
-        overflow-x:hidden;
-        width:100%;
-        height:100%;
+  color:var(--cream);
+  font-family:'Tajawal','Cormorant Garamond',serif;
+  overflow-x:hidden;
+  width:100%;
+  min-height:100%;  
       }
       ::selection{background:var(--gold);color:#07080b;}
     
@@ -317,38 +317,43 @@
         .rec-label,.year-label{ top:calc(9vh + 16px); }
         .stage-text{ bottom:13vh; }
       }
+      /* Graduation background layer: a soft, page-wide veil of floating
+         emojis. It stays BEHIND the flipbook (true background), covering
+         the full page, light and see-through, never blocking clicks. */
       .grad-bg-layer{
-    position:absolute;   /* لو الصفحة كلها position:relative */
+    position:absolute;
     inset:0;
     overflow:hidden;
-    pointer-events:none; /* عشان ميمنعش الضغط على الصور اللي فوقه */
+    pointer-events:none;
     z-index:0;
   }
   .grad-bg-layer .piece{
     position:absolute;
     top:-60px;
-    font-size:26px;
+    font-size:24px;
     opacity:0;
     will-change:transform, opacity;
     animation-name:gradFall;
     animation-timing-function:linear;
     animation-iteration-count:infinite;
+    filter:drop-shadow(0 3px 5px rgba(0,0,0,0.12));
   }
-  .grad-bg-layer .piece.small{ font-size:16px; }
-  .grad-bg-layer .piece.large{ font-size:34px; }
+  .grad-bg-layer .piece.small{ font-size:14px; filter:blur(0.6px) drop-shadow(0 2px 3px rgba(0,0,0,0.08)); }
+  .grad-bg-layer .piece.large{ font-size:34px; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.14)); }
  
   @keyframes gradFall{
     0%{
-      transform:translateY(0) translateX(0) rotate(0deg);
+      transform:translateY(0) translateX(0) rotate(0deg) scale(0.9);
       opacity:0;
     }
-    8%{ opacity:0.9; }
+    8%{ opacity:0.16; }
     50%{
-      transform:translateY(50vh) translateX(var(--drift,20px)) rotate(180deg);
+      transform:translateY(50vh) translateX(var(--drift,20px)) rotate(180deg) scale(1);
+      opacity:0.2;
     }
-    92%{ opacity:0.85; }
+    92%{ opacity:0.15; }
     100%{
-      transform:translateY(115vh) translateX(calc(var(--drift,20px) * -1)) rotate(360deg);
+      transform:translateY(115vh) translateX(calc(var(--drift,20px) * -1)) rotate(360deg) scale(0.9);
       opacity:0;
     }
   }
@@ -368,7 +373,7 @@
     </style>
     </head>
     <body>
-    
+
     <div id="stage">
       <div class="photo-wrap">
         <div class="photo">
@@ -395,7 +400,7 @@
     
       <div class="stage-text">
         <div class="rule"></div>
-        <h1 class="headline">Our<b> Graduation</b></h1>
+        <h1 class="headline">Our<b>Graduation</b></h1>
         <div class="enter-wrap">
           <button class="enter-btn" id="enterBtn">
             <span>Click to see</span>
@@ -505,26 +510,72 @@
       });
     })();
     </script>
-    
-   
+
+<div id="site">
+  <div class="video-hero">
+    <iframe
+      class="video-hero-embed"
+      src="https://player.cloudinary.com/embed/?cloud_name=df5qqg0v0&public_id=lv_0_20260706184458_nilmzh&player[autoplay]=true&player[muted]=true&player[loop]=true&player[controls]=false&player[bigPlayButton]=false&player[autoplayMode]=always&player[fluid]=true"
+      frameborder="0"
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+    <div class="video-hero-shade"></div>
+    <div class="video-hero-text">
+      <span class="video-hero-eyebrow">A Story Worth Keeping</span>
+      <h2 class="video-hero-title">Our <b>memories</b> turned into a book</h2>
+    </div>
+  </div>
+</div>
+
+<style>
+.video-hero{
+ position: relative; 
+} 
+.video-hero-embed{
+width: 1800px;
+height: 500px;
+margin: auto;
+box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+filter: blur(3px);
+}
+.video-hero-text{
+position:absolute;
+transform: translateX(-50%);
+z-index: 10;
+text-align: center;
+width: 100%;
+bottom: 200px;
+left: 50%;
+font-weight: bold;
+text-shadow:
+    0 0 4px #ffffff,
+    0 0 10px #ffffff,
+    0 0 30px #ffffff,
+    0 0 60px #ffffff,
+    0 0 100px #ffffff,
+    0 0 100px #ffffff;
+    color: #ffffff;
+}
+
+.video-hero-eyebrow{
+ font-size: 20px; 
+}
+.video-hero-title{
+ color:#ffff; 
+}
+ </style>
 
 
+    <main style="position:relative;">
 
-
-
-
-
-
-
-    <!-- SCRIPT 
-    <script src="./script.js" defer></script>
-</head>
--->
-
-    <main>
+        <!-- Graduation celebration background: a light veil of floating
+             emojis that starts right below the video and sits behind the
+             flipbook. Purely decorative and click-through. -->
+        <div class="grad-bg-layer" id="gradBgLayer"></div>
 
         <!-- TOP CONTAINER -->
-        <div class="fixed top-0 left-0 w-full h-auto p-4 flex flex-row justify-end items-center">
+        <div class="fixed top-0 left-0 w-full h-auto p-4 flex flex-row justify-end items-center" style="z-index:6;">
           <!-- Toggle mode button -->
           <label class="swap swap-rotate">
             <input type="checkbox" class="theme-controller" value="black" />
@@ -532,8 +583,10 @@
         </label>
     </div>
 
+    <!-- ✅ الفريم ده هو اللي بيلف الكتاب + الجرامافون مع بعض، وبيتقفل صح -->
+    <div class="book-and-player">
+
         <!-- FLIP BOOK -->
-        <div class="grad-bg-layer" id="gradBgLayer"></div>
         <input type="checkbox" id="cover_checkbox">
         <input type="checkbox" id="page1_checkbox">
         <input type="checkbox" id="page2_checkbox">
@@ -543,8 +596,35 @@
 
         <div id="flip_book">
             <div class="front_cover">
-                <label for="cover_checkbox" id="cover"></label>
+                <label for="cover_checkbox" id="cover">
+                <img src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783381839/ChatGPT_Image_Jul_7_2026_at_02_50_28_AM_i4uxxl.png" crossorigin="anonymous">
+                </label>
+                <h2 class="cover-school-name">your school/university name</h2>
             </div>
+            <style>
+#cover img{
+width: 170px;
+margin-left: 55px;
+margin-top: 90px;
+}
+.front_cover .cover-school-name{
+    position: relative;
+    z-index: 6;
+    margin-top: 150px;
+    padding: 0 24px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #e8c983;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+    pointer-events: none;
+}
+</style>
+
 
             <div class="page" id="page1">
                 <div class="front_page">
@@ -618,10 +698,44 @@
             <div class="back_cover"></div>
         </div>
 
-        <!-- BOTTOM CONTAINER -->
-        <div class="fixed left-0 bottom-0 w-full h-auto p-4 flex flex-row justify-between items-center">
+        <!-- ✅ الجرامافون دلوقتي جوه نفس الفريم بتاع الكتاب، تحته مباشرة، وماشي في الـ flow الطبيعي للصفحة -->
+        <div class="player-stage" id="playerStage">
+          <button class="close-btn" id="closeBtn" aria-label="إغلاق المشغل">×</button>
 
+          <div class="gramo-base">
+            <div class="plinth"></div>
+            <div class="vinyl" id="vinyl">
+              <div class="vinyl-label"><span>Seniors</span></div>
+              <div class="vinyl-hole"></div>
+            </div>
+            <div class="tonearm-pivot"></div>
+            <div class="tonearm" id="tonearm">
+              <div class="rod"></div>
+              <div class="head"></div>
+            </div>
+          </div>
+
+          <button class="play-btn" id="playBtn" aria-label="تشغيل">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+
+          <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+          <!-- غيّر src ده لمسار الأغنية بتاعتك -->
+          <audio id="audio" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783388056/e0805c036cd762a9d08eeaf2ff315b95_4_pok7nc.mp3"></audio>
+
+          <!-- صوت تقليب الصفحة: صوت مُولَّد جاهز، مدمج هنا مباشرة فمفيش لينكات خارجية -->
+          <audio id="pageFlipSound" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783388054/Paper_turn_sound_FX-_Royalty_Free_HD_-_Gaming_Sounds_Movie_FX_mfmsxn.mp3" preload="auto"></audio>
+        </div>
+
+    </div>
+    <!-- ✅ قفل صحيح للفريم بتاع الكتاب + الجرامافون -->
+
+        <!-- BOTTOM CONTAINER -->
+        <div class="fixed left-0 bottom-0 w-full h-auto p-4 flex flex-row justify-between items-center" style="z-index:6;"></div>
     </main>
+
     <style>
 /* DAISYUI */
 @plugin "daisyui" {
@@ -639,8 +753,8 @@
 
 /* GENERAL */
 body {
-    width: 100%;
-    height: 100dvh;
+  width: 100%;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -651,53 +765,17 @@ input {
     display: none;
 }
 
-.grad-bg-layer{
-    position:absolute;   /* لو الصفحة كلها position:relative */
-    inset:0;
-    overflow:hidden;
-    pointer-events:none; /* عشان ميمنعش الضغط على الصور اللي فوقه */
-    z-index:0;
-  }
-  .grad-bg-layer .piece{
-    position:absolute;
-    top:-60px;
-    font-size:26px;
-    opacity:0;
-    will-change:transform, opacity;
-    animation-name:gradFall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-  }
-  .grad-bg-layer .piece.small{ font-size:16px; }
-  .grad-bg-layer .piece.large{ font-size:34px; }
- 
-  @keyframes gradFall{
-    0%{
-      transform:translateY(0) translateX(0) rotate(0deg);
-      opacity:0;
-    }
-    8%{ opacity:0.9; }
-    50%{
-      transform:translateY(50vh) translateX(var(--drift,20px)) rotate(180deg);
-    }
-    92%{ opacity:0.85; }
-    100%{
-      transform:translateY(115vh) translateX(calc(var(--drift,20px) * -1)) rotate(360deg);
-      opacity:0;
-    }
-  }
- 
-  /* ورق كونفيتي مستطيل ملون (اختياري بجانب الإيموجي) */
-  .grad-bg-layer .confetti{
-    position:absolute;
-    top:-40px;
-    width:10px; height:16px;
-    border-radius:2px;
-    opacity:0;
-    animation-name:gradFall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-  }
+/* ✅ الفريم الجديد بتاع الكتاب + الجرامافون: عمودي، في النص، والجرامافون بيتحط تحت الكتاب مباشرة كجزء طبيعي من الصفحة */
+.book-and-player{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 0 40px;
+}
 
 /* FLIP BOOK */
 #flip_book {
@@ -848,15 +926,15 @@ input {
 
 /* لما الصفحة تتقلب، الظل بيعدي في نص الورقة بالظبط لحظة ما بتبقى على حرفها */
 #page1_checkbox:checked ~ #flip_book #page1 .front_page::after,
-#page1_checkbox:checked ~ #flip_book #page1 .back_page::before,
+#page1_checkbox:checked ~ #flip_book #page1 .back_page::after,
 #page2_checkbox:checked ~ #flip_book #page2 .front_page::after,
-#page2_checkbox:checked ~ #flip_book #page2 .back_page::before,
+#page2_checkbox:checked ~ #flip_book #page2 .back_page::after,
 #page3_checkbox:checked ~ #flip_book #page3 .front_page::after,
-#page3_checkbox:checked ~ #flip_book #page3 .back_page::before,
+#page3_checkbox:checked ~ #flip_book #page3 .back_page::after,
 #page4_checkbox:checked ~ #flip_book #page4 .front_page::after,
-#page4_checkbox:checked ~ #flip_book #page4 .back_page::before,
+#page4_checkbox:checked ~ #flip_book #page4 .back_page::after,
 #page5_checkbox:checked ~ #flip_book #page5 .front_page::after,
-#page5_checkbox:checked ~ #flip_book #page5 .back_page::before{
+#page5_checkbox:checked ~ #flip_book #page5 .back_page::after{
   background-position:100% 0%;
 }
 
@@ -968,7 +1046,7 @@ input {
 #cover_checkbox:checked~#flip_book .front_cover {
     transform: rotateY(-180deg);
     transition: transform 1.5s, z-index 0.5s 0.5s;
-    z-index: 1;
+    z-index: -1;
 }
 
 
@@ -1042,20 +1120,22 @@ input {
     --crimson:#8e1f28;
     --cream:#f3efe4;
 
-    position:fixed;
-    left:18px;
-    bottom:18px;
+    /* ✅ ماشي في الـ flow الطبيعي للصفحة دلوقتي، مش fixed ولا absolute
+       فبيقف تحت الكتاب مباشرة ويتحرك معاه في السكرول */
+    position:relative;
     width:auto;
     max-width:170px;
-    margin:0;
+    margin:0 auto;
     padding:0;
     display:flex;
     flex-direction:column;
     align-items:center;
     perspective:900px;
     font-family:'Tajawal', sans-serif;
-    z-index:500;
+    z-index:5;
     transition:opacity .35s ease, transform .35s ease;
+  right: 420px;
+  margin-top: 40px;
   }
   .player-stage.closed{
     opacity:0;
@@ -1230,16 +1310,17 @@ input {
     margin-top:8px;
     width:28px; height:28px;
     border-radius:50%;
-    border:1px solid var(--gold);
-    background:rgba(201,162,77,0.08);
+    border:1.5px solid var(--gold-bright);
+    background:rgba(201,162,77,0.28);
+    box-shadow:0 0 10px rgba(232,201,131,0.35);
     color:var(--gold-bright);
     cursor:pointer;
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:background .3s ease, transform .2s ease;
+    transition:background .3s ease, transform .2s ease, box-shadow .3s ease;
   }
-  .play-btn:hover{ background:rgba(201,162,77,0.2); }
+  .play-btn:hover{ background:rgba(201,162,77,0.45); box-shadow:0 0 14px rgba(232,201,131,0.55); }
   .play-btn:active{ transform:scale(0.94); }
   .play-btn svg{ width:11px; height:11px; }
 
@@ -1261,46 +1342,17 @@ input {
 
   @media (max-width:480px){
     .player-stage{
-      transform-origin: bottom left;
+      transform-origin: top center;
       transform: scale(0.8);
-      left:10px;
-      bottom:10px;
     }
     .player-stage.closed{
       transform: translateY(12px) scale(0.72);
     }
   }
 </style>
-<body>
-
-<div class="player-stage" id="playerStage">
-  <button class="close-btn" id="closeBtn" aria-label="إغلاق المشغل">×</button>
 
 
-  <div class="gramo-base">
-    <div class="plinth"></div>
-    <div class="vinyl" id="vinyl">
-      <div class="vinyl-label"><span>Seniors</span></div>
-      <div class="vinyl-hole"></div>
-    </div>
-    <div class="tonearm-pivot"></div>
-    <div class="tonearm" id="tonearm">
-      <div class="rod"></div>
-      <div class="head"></div>
-    </div>
-  </div>
 
-  <button class="play-btn" id="playBtn" aria-label="تشغيل">
-    <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-    <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-  </button>
-
-  <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
-
-  <!-- غيّر src ده لمسار الأغنية بتاعتك -->
-  <audio id="audio" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783200591/e0805c036cd762a9d08eeaf2ff315b95_i25d6v.mp3"</audio>
-
-</div>
 
 <script>
 (function(){
@@ -1351,16 +1403,63 @@ input {
 })();
 </script>
 
+<script>
+/* صوت تقليب الصفحة - بيشتغل مع الغلاف وكل صفحة في الكتاب */
+(function(){
+  const flipSound = document.getElementById('pageFlipSound');
+  if(!flipSound) return;
 
+  const pageCheckboxes = document.querySelectorAll(
+    '#cover_checkbox, #page1_checkbox, #page2_checkbox, #page3_checkbox, #page4_checkbox, #page5_checkbox'
+  );
 
+  pageCheckboxes.forEach(function(checkbox){
+    checkbox.addEventListener('change', function(){
+      flipSound.currentTime = 0;
+      flipSound.play().catch(function(){
+        /* المتصفح ممكن يمنع التشغيل التلقائي قبل أول تفاعل من المستخدم */
+      });
+    });
+  });
+})();
+</script>
 
+<script>
+/* ---------------------------------------------------------------
+   Graduation celebration background (light, floating 3D emojis)
+   - Drifts across the entire page, very lightly transparent
+   - Purely decorative: pointer-events disabled so it never blocks clicks
+   --------------------------------------------------------------- */
+(function(){
+  const layer = document.getElementById('gradBgLayer');
+  if(!layer) return;
 
+  const EMOJIS = ['🎓','📜','🎉','✨','🥳','🏆','⭐','🎊'];
+  const isSmall = window.matchMedia('(max-width:640px)').matches;
+  const COUNT = isSmall ? 16 : 30;
 
+  for(let i = 0; i < COUNT; i++){
+    const piece = document.createElement('span');
+    const roll = Math.random();
+    piece.className = 'piece' + (roll < 0.3 ? ' small' : roll > 0.75 ? ' large' : '');
+    piece.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 
+    const left = Math.random() * 100;
+    const duration = 12 + Math.random() * 9;      // 12s - 21s per loop
+    const negativeDelay = Math.random() * duration; // stagger so it looks already in motion on load
+    const drift = Math.round(Math.random() * 90 - 45) + 'px';
 
+    piece.style.left = left + '%';
+    piece.style.setProperty('--drift', drift);
+    piece.style.animationDuration = duration + 's';
+    piece.style.animationDelay = '-' + negativeDelay + 's';
 
-   
-   <script>
+    layer.appendChild(piece);
+  }
+})();
+</script>
+
+<script>
 
    /******************************
 * RESPONSIVE WARNING BEHAVIOR *
@@ -1368,10 +1467,6 @@ input {
 
 const responsiveWarning = document.getElementById("responsive-warning");
 // Enable/disable responsive warning.
-// NOTE: this used to be "false" with no matching #responsive-warning element
-// in the page, so on every mobile-sized screen this threw a JS error on load
-// and on every resize. The site is now responsive, so the warning is disabled
-// and the code is guarded in case the element is ever added back.
 const responsiveDesign = true;
 // Mobile width limit.
 const threshold = 768;
@@ -1401,51 +1496,6 @@ checkResponsiveState();
 window.addEventListener("resize", checkResponsiveState);
    </script>
 
-   <script>
-(function(){
-  const layer = document.getElementById('gradBgLayer');
-  if(!layer) return;
- 
-  const emojis = ['🎓','🎉','✨','🎊'];
-  const confettiColors = ['#c9a24d','#8e1f28','#f3efe4','#1c2f4d','#e8c983'];
- 
-  // Fewer particles on smaller / low-power screens so mobile doesn't lag.
-  // (This block used to be duplicated in the page, which silently doubled
-  // the particle count to 52 — that duplicate has been removed.)
-  const isSmall = window.matchMedia('(max-width:640px)').matches;
-  const TOTAL = isSmall ? 12 : 26;
- 
-  const frag = document.createDocumentFragment();
-  for(let i=0;i<TOTAL;i++){
-    const useConfetti = Math.random() < 0.4;
-    const el = document.createElement('div');
- 
-    const left = Math.random()*100;
-    const duration = 9 + Math.random()*10;   // سرعة السقوط
-    const delay = Math.random()*14;          // تأخير عشوائي عشان ميظهروش كلهم مع بعض
-    const drift = (Math.random()*80 - 40) + 'px';
- 
-    el.style.left = left + '%';
-    el.style.animationDuration = duration + 's';
-    el.style.animationDelay = delay + 's';
-    el.style.setProperty('--drift', drift);
- 
-    if(useConfetti){
-      el.className = 'confetti';
-      el.style.background = confettiColors[Math.floor(Math.random()*confettiColors.length)];
-      el.style.transform = `rotate(${Math.random()*360}deg)`;
-    } else {
-      const sizeClass = Math.random() < 0.3 ? 'small' : (Math.random() < 0.6 ? '' : 'large');
-      el.className = 'piece ' + sizeClass;
-      el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    }
- 
-    frag.appendChild(el);
-  }
-  layer.appendChild(frag);
-})();
-</script>
- 
   </body>
 
 </html>
