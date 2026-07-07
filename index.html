@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Flip Book</title>
+    <title>Flipbook</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="./style.css">
@@ -533,17 +533,9 @@
 .video-hero{
  position: relative; 
 } 
-.video-hero{
-  width:100%;
-  overflow:hidden;
-}
 .video-hero-embed{
-width: 100%;
-max-width: 1800px;
-height: auto;
-aspect-ratio: 18 / 5;
-min-height: 200px;
-display: block;
+width: 1800px;
+height: 500px;
 margin: auto;
 box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
 filter: blur(3px);
@@ -554,8 +546,7 @@ transform: translateX(-50%);
 z-index: 10;
 text-align: center;
 width: 100%;
-padding: 0 16px;
-bottom: 12%;
+bottom: 200px;
 left: 50%;
 font-weight: bold;
 text-shadow:
@@ -569,15 +560,10 @@ text-shadow:
 }
 
 .video-hero-eyebrow{
- font-size: clamp(11px, 2.2vw, 20px);
- display:block;
+ font-size: 20px; 
 }
 .video-hero-title{
- color:#ffff;
- font-size: clamp(16px, 4vw, 32px);
- margin-top: 6px;
-}
-
+ color:#ffff; 
 @media (max-width: 480px){
   .video-hero-embed{ aspect-ratio: 9 / 8; min-height: 260px; }
   .video-hero-text{ bottom: 8%; }
