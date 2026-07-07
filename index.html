@@ -414,7 +414,7 @@
     (function(){
       // build gold dust particles (fewer on small/mobile screens for smoother performance)
       const field = document.getElementById('particles');
-      const N = window.matchMedia('(max-width:640px)').matches ? 16 : 34;
+      const N = window.matchMedia('(max-width:640px)').matches ? 12 : 22;
       const motes = [];
       for(let i=0;i<N;i++){
         const m = document.createElement('div');
@@ -517,6 +517,7 @@
       class="video-hero-embed"
       src="https://player.cloudinary.com/embed/?cloud_name=df5qqg0v0&public_id=lv_0_20260706184458_nilmzh&player[autoplay]=true&player[muted]=true&player[loop]=true&player[controls]=false&player[bigPlayButton]=false&player[autoplayMode]=always&player[fluid]=true"
       frameborder="0"
+      loading="lazy"
       allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
       allowfullscreen>
     </iframe>
@@ -532,9 +533,17 @@
 .video-hero{
  position: relative; 
 } 
+.video-hero{
+  width:100%;
+  overflow:hidden;
+}
 .video-hero-embed{
-width: 1800px;
-height: 500px;
+width: 100%;
+max-width: 1800px;
+height: auto;
+aspect-ratio: 18 / 5;
+min-height: 200px;
+display: block;
 margin: auto;
 box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
 filter: blur(3px);
@@ -545,7 +554,8 @@ transform: translateX(-50%);
 z-index: 10;
 text-align: center;
 width: 100%;
-bottom: 200px;
+padding: 0 16px;
+bottom: 12%;
 left: 50%;
 font-weight: bold;
 text-shadow:
@@ -559,10 +569,18 @@ text-shadow:
 }
 
 .video-hero-eyebrow{
- font-size: 20px; 
+ font-size: clamp(11px, 2.2vw, 20px);
+ display:block;
 }
 .video-hero-title{
- color:#ffff; 
+ color:#ffff;
+ font-size: clamp(16px, 4vw, 32px);
+ margin-top: 6px;
+}
+
+@media (max-width: 480px){
+  .video-hero-embed{ aspect-ratio: 9 / 8; min-height: 260px; }
+  .video-hero-text{ bottom: 8%; }
 }
  </style>
 
@@ -597,15 +615,15 @@ text-shadow:
         <div id="flip_book">
             <div class="front_cover">
                 <label for="cover_checkbox" id="cover">
-                <img src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783381839/ChatGPT_Image_Jul_7_2026_at_02_50_28_AM_i4uxxl.png" crossorigin="anonymous">
+                <img src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783381839/ChatGPT_Image_Jul_7_2026_at_02_50_28_AM_i4uxxl.png" crossorigin="anonymous" loading="lazy" decoding="async">
                 </label>
                 <h2 class="cover-school-name">your school/university name</h2>
             </div>
             <style>
 #cover img{
-width: 170px;
-margin-left: 55px;
-margin-top: 90px;
+width: 218px;
+margin-left: 70px;
+margin-top: 115px;
 }
 .front_cover .cover-school-name{
     position: relative;
@@ -631,6 +649,7 @@ margin-top: 90px;
                     <label for="page1_checkbox"></label>
                     <img class="front_content"
                     crossorigin="anonymous"
+                    loading="lazy" decoding="async"
                     src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783181659/ChatGPT_Image_Jul_4_2026_at_07_13_56_PM_gv7mlz.png">
                 </div>
 
@@ -638,6 +657,7 @@ margin-top: 90px;
                     <label for="page1_checkbox"></label>
                     <img class="back_content"
                     crossorigin="anonymous"
+                    loading="lazy" decoding="async"
                     src="https://res.cloudinary.com/df5qqg0v0/image/upload/v1783138346/happy-students-graduation-ceremony_dt4ftd.jpg">                </div>
             </div>
 
@@ -723,7 +743,7 @@ margin-top: 90px;
           <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
 
           <!-- غيّر src ده لمسار الأغنية بتاعتك -->
-          <audio id="audio" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783388056/e0805c036cd762a9d08eeaf2ff315b95_4_pok7nc.mp3"></audio>
+          <audio id="audio" preload="none" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783388056/e0805c036cd762a9d08eeaf2ff315b95_4_pok7nc.mp3"></audio>
 
           <!-- صوت تقليب الصفحة: صوت مُولَّد جاهز، مدمج هنا مباشرة فمفيش لينكات خارجية -->
           <audio id="pageFlipSound" src="https://res.cloudinary.com/df5qqg0v0/video/upload/v1783388054/Paper_turn_sound_FX-_Royalty_Free_HD_-_Gaming_Sounds_Movie_FX_mfmsxn.mp3" preload="auto"></audio>
@@ -779,8 +799,8 @@ input {
 
 /* FLIP BOOK */
 #flip_book {
-    width: 298px;
-    height: 420px;
+    width: 382px;
+    height: 538px;
     position: relative;
     transition-duration: 1s;
     perspective: 2000px;
@@ -939,10 +959,10 @@ input {
 }
 
 .page {
-    width: 288px;
-    height: 400px;
+    width: 369px;
+    height: 512px;
     position: absolute;
-    top: 10px;
+    top: 13px;
     left: 1px;
     border-radius: 0 5px 5px 0;
     background-color: white;
@@ -989,15 +1009,15 @@ input {
 }
 
 .edge_shading {
-    width: 288px;
-    height: 400px;
+    width: 369px;
+    height: 512px;
     position: absolute;
     z-index: 98;
 }
 
 .front_content {
-    width: 287px;
-    height: 398px;
+    width: 367px;
+    height: 509px;
     position: cover;
     top: 1px;
     border-radius: 0 5px 5px 0;
@@ -1005,8 +1025,8 @@ input {
 }
 
 .back_content {
-    width: 287px;
-    height: 398px;
+    width: 367px;
+    height: 509px;
     position: cover;
     top: 1px;
     left: 1px;
@@ -1040,7 +1060,7 @@ input {
 }
 
 #cover_checkbox:checked~#flip_book {
-    transform: translateX(144px)
+    transform: translateX(184px)
 }
 
 #cover_checkbox:checked~#flip_book .front_cover {
@@ -1086,24 +1106,24 @@ input {
    is all fixed-px on purpose so the 3D flip keeps working correctly.
    Instead of rewriting every measurement, we simply scale the whole
    #flip_book down as one unit on smaller viewports. Because the opening
-   translateX(144px) is applied *inside* the same transform (before the
+   translateX(184px) is applied *inside* the same transform (before the
    scale, in local coordinates), it automatically shrinks proportionally
    with the book — so the two-page spread always fits the screen. */
 @media (max-width: 1024px){
     #flip_book{ transform: scale(0.85); transform-origin: center center; }
-    #cover_checkbox:checked~#flip_book{ transform: scale(0.85) translateX(144px); }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.85) translateX(184px); }
 }
 @media (max-width: 768px){
     #flip_book{ transform: scale(0.68); transform-origin: center center; }
-    #cover_checkbox:checked~#flip_book{ transform: scale(0.68) translateX(144px); }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.68) translateX(184px); }
 }
 @media (max-width: 480px){
     #flip_book{ transform: scale(0.52); transform-origin: center center; }
-    #cover_checkbox:checked~#flip_book{ transform: scale(0.52) translateX(144px); }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.52) translateX(184px); }
 }
 @media (max-width: 360px){
     #flip_book{ transform: scale(0.44); transform-origin: center center; }
-    #cover_checkbox:checked~#flip_book{ transform: scale(0.44) translateX(144px); }
+    #cover_checkbox:checked~#flip_book{ transform: scale(0.44) translateX(184px); }
 }
 
 </style>  
@@ -1134,8 +1154,7 @@ input {
     font-family:'Tajawal', sans-serif;
     z-index:5;
     transition:opacity .35s ease, transform .35s ease;
-  right: 420px;
-  margin-top: 40px;
+    margin-top: 10px;
   }
   .player-stage.closed{
     opacity:0;
@@ -1340,14 +1359,26 @@ input {
     background:linear-gradient(90deg, var(--gold), var(--gold-bright));
   }
 
+  @media (max-width:1024px){
+    .player-stage{ transform-origin: top center; transform: scale(0.85); }
+    .player-stage.closed{ transform: translateY(12px) scale(0.77); }
+  }
+  @media (max-width:768px){
+    .player-stage{ transform-origin: top center; transform: scale(0.7); }
+    .player-stage.closed{ transform: translateY(12px) scale(0.63); }
+  }
   @media (max-width:480px){
     .player-stage{
       transform-origin: top center;
-      transform: scale(0.8);
+      transform: scale(0.6);
     }
     .player-stage.closed{
-      transform: translateY(12px) scale(0.72);
+      transform: translateY(12px) scale(0.54);
     }
+  }
+  @media (max-width:360px){
+    .player-stage{ transform-origin: top center; transform: scale(0.5); }
+    .player-stage.closed{ transform: translateY(12px) scale(0.45); }
   }
 </style>
 
@@ -1436,8 +1467,9 @@ input {
 
   const EMOJIS = ['🎓','📜','🎉','✨','🥳','🏆','⭐','🎊'];
   const isSmall = window.matchMedia('(max-width:640px)').matches;
-  const COUNT = isSmall ? 16 : 30;
+  const COUNT = isSmall ? 12 : 22;
 
+  const frag = document.createDocumentFragment();
   for(let i = 0; i < COUNT; i++){
     const piece = document.createElement('span');
     const roll = Math.random();
@@ -1454,8 +1486,9 @@ input {
     piece.style.animationDuration = duration + 's';
     piece.style.animationDelay = '-' + negativeDelay + 's';
 
-    layer.appendChild(piece);
+    frag.appendChild(piece);
   }
+  layer.appendChild(frag);
 })();
 </script>
 
@@ -1492,10 +1525,15 @@ function checkResponsiveState() {
 // Initial check.
 checkResponsiveState();
 
-// Real-time resize detection.
-window.addEventListener("resize", checkResponsiveState);
+// Real-time resize detection (debounced to avoid excessive reflows).
+let resizeTimer;
+window.addEventListener("resize", function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(checkResponsiveState, 150);
+});
    </script>
 
   </body>
 
 </html>
+
